@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     render component: "User", props: { user: @user }
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    # not passing backing html or js, just json
+    render json: @user
+  end
+
   def create()
     @user = User.create(user_params)
     # not passing backing html or js, just json
